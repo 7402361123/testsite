@@ -1,0 +1,46 @@
+
+//Properties file setup
+
+log4j.rootLogger=DEBUG, consoleAppender, fileAppender
+ 
+log4j.appender.consoleAppender=org.apache.log4j.ConsoleAppender
+log4j.appender.consoleAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.consoleAppender.layout.ConversionPattern=[%t] %-5p %c %x - %m%n
+ 
+log4j.appender.fileAppender=org.apache.log4j.RollingFileAppender
+log4j.appender.fileAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.fileAppender.layout.ConversionPattern=[%t] %-5p %c %x - %m%n
+log4j.appender.fileAppender.File=demoApplication.log
+
+//class
+package Utils;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.junit.Test;
+
+public class logtest {
+
+	
+	private static Logger logger = Logger.getLogger(logtest.class);
+	
+
+		@Test
+	    public void main() {
+	    	PropertyConfigurator.configure("log4j.properties");
+
+	
+	        logger.debug("Log4jExample: A Sample Debug Message");
+	
+	        logger.info("Log4jExample: A Sample Info  Message");
+	  
+	        SendEmail sm=new SendEmail();
+	        String to="vimalmark4@gmail.com";
+	        String cc="vimalmark4@gmail.com";
+	        String subject="test";
+	        sm.sendEmailUsingGmailSMTP_Mod(to, cc, subject);
+	        
+	        
+	    }
+	    
+}
